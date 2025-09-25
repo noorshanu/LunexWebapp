@@ -23,44 +23,47 @@ const Navbar = () => {
       <header className="bg-black border-b border-gray-800 relative z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <motion.div 
-              className="flex items-center space-x-2"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <img src="/images/logo.svg" alt="Lunex Logo" className="h-8 w-8" />
-            </motion.div>
+            {/* Logo and Navigation together */}
+            <div className="flex items-center space-x-8">
+              {/* Logo */}
+              <motion.div 
+                className="flex items-center space-x-2"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <img src="/images/logo.png" alt="Lunex Logo" className="h-8 w-auto" />
+              </motion.div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="relative px-6 py-2 text-sm font-medium transition-colors duration-200"
-                >
-                  <div className="flex items-center space-x-2">
-                    <FiCircle 
-                      className={`w-3 h-3 ${
-                        item.active ? 'text-cyan-400 fill-current' : 'text-gray-500'
-                      }`}
-                    />
-                    <span className={item.active ? 'text-white' : 'text-gray-400 hover:text-white'}>
-                      {item.name}
-                    </span>
-                  </div>
-                  {item.active && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400"
-                      layoutId="activeTab"
-                      initial={false}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                </Link>
-              ))}
-            </nav>
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center space-x-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className="relative px-6 py-2 text-sm font-medium transition-colors duration-200"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <FiCircle 
+                        className={`w-3 h-3 ${
+                          item.active ? 'text-cyan-400 fill-current' : 'text-gray-500'
+                        }`}
+                      />
+                      <span className={item.active ? 'text-white' : 'text-gray-400 hover:text-white'}>
+                        {item.name}
+                      </span>
+                    </div>
+                    {item.active && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 h-1 bg-cyan-400 rounded-t-full"
+                        layoutId="activeTab"
+                        initial={false}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </Link>
+                ))}
+              </nav>
+            </div>
 
             {/* Right side items */}
             <div className="flex items-center space-x-4">
@@ -80,9 +83,11 @@ const Navbar = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-cyan-500 to-green-500 text-black px-4 py-2 rounded-lg font-semibold hover:from-cyan-600 hover:to-green-600 transition-all duration-200 text-sm flex items-center space-x-2"
+                className="text-white  px-4 py-2  font-semibold hover:from-cyan-600 hover:to-green-600 transition-all duration-200 text-sm flex items-center space-x-2 border border-green-400"
               >
-                <FiCircle className="w-3 h-3 text-black fill-current" />
+                <div className="w-4 h-4 rounded-full border border-black flex items-center justify-center">
+                  <div className="w-2 h-2 bg-black rounded-full"></div>
+                </div>
                 <span>Connect Wallet</span>
               </motion.button>
 
@@ -130,7 +135,7 @@ const Navbar = () => {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-800">
                   <div className="flex items-center space-x-2">
-                    <img src="/images/logo.svg" alt="Lunex Logo" className="h-8 w-8" />
+                    <img src="/images/logo.png" alt="Lunex Logo" className="h-8 w-auto" />
                   </div>
                   <motion.button
                     whileHover={{ scale: 1.1 }}
@@ -194,9 +199,11 @@ const Navbar = () => {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-green-500 text-black px-4 py-3 rounded-lg font-semibold hover:from-cyan-600 hover:to-green-600 transition-all duration-200 flex items-center justify-center space-x-2"
+                    className="w-full bg-gradient-to-r from-cyan-500 to-green-500 text-black px-4 py-3 rounded-xl font-semibold hover:from-cyan-600 hover:to-green-600 transition-all duration-200 flex items-center justify-center space-x-2 border border-green-400"
                   >
-                    <FiCircle className="w-3 h-3 text-black fill-current" />
+                    <div className="w-4 h-4 rounded-full border border-black flex items-center justify-center">
+                      <div className="w-2 h-2 bg-black rounded-full"></div>
+                    </div>
                     <span>Connect Wallet</span>
                   </motion.button>
                 </div>
