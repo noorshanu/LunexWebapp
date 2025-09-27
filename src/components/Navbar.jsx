@@ -20,9 +20,9 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="bg-black border-b border-gray-800 relative z-50">
+      <header className="bg-black border-b border-gray-800 relative z-50 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between ">
             {/* Logo and Navigation together */}
             <div className="flex items-center space-x-8">
               {/* Logo */}
@@ -44,8 +44,8 @@ const Navbar = () => {
                   >
                     <div className="flex items-center space-x-2">
                       <FiCircle 
-                        className={`w-3 h-3 ${
-                          item.active ? 'text-cyan-400 fill-current' : 'text-gray-500'
+                        className={`w-5 h-5 ${
+                          item.active ? 'text-[#34FCB4] fill-current p-1 border border-gray-500 rounded-full' : 'text-gray-500'
                         }`}
                       />
                       <span className={item.active ? 'text-white' : 'text-gray-400 hover:text-white'}>
@@ -54,7 +54,7 @@ const Navbar = () => {
                     </div>
                     {item.active && (
                       <motion.div
-                        className="absolute bottom-0 left-0 right-0 h-1 bg-cyan-400 rounded-t-full"
+                        className="absolute bottom-[-24px] left-5 right-0 h-1 bg-[#34FCB4] w-[80%] mx-auto "
                         layoutId="activeTab"
                         initial={false}
                         transition={{ duration: 0.3 }}
@@ -66,7 +66,7 @@ const Navbar = () => {
             </div>
 
             {/* Right side items */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 gap-4">
               {/* Country Flag */}
               <motion.div
                 whileHover={{ scale: 1.1 }}
@@ -75,7 +75,7 @@ const Navbar = () => {
                 <img 
                   src="https://flagcdn.com/w20/us.png" 
                   alt="US Flag" 
-                  className="w-5 h-4 rounded-sm"
+                  className="w-5 h-4 "
                 />
               </motion.div>
 
@@ -83,12 +83,11 @@ const Navbar = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-white  px-4 py-2  font-semibold hover:from-cyan-600 hover:to-green-600 transition-all duration-200 text-sm flex items-center space-x-2 border border-green-400"
+                className="text-white  px-2 py-2  font-semibold hover:from-cyan-600 hover:to-green-600 transition-all duration-200 text-sm flex items-center space-x-2 border border-green-400 relative"
               >
-                <div className="w-4 h-4 rounded-full border border-black flex items-center justify-center">
-                  <div className="w-2 h-2 bg-black rounded-full"></div>
-                </div>
-                <span>Connect Wallet</span>
+                <img src="images/button.png" alt="" className=' absolute left-[-10px]' />
+       
+                <span className='py-2 px-4 border border-gray-700'>Connect Wallet</span>
               </motion.button>
 
               {/* Mobile Menu Button */}
