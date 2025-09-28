@@ -52,15 +52,18 @@ const Staking = () => {
             </div>
         </div>
        </div>
-        
-     
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="flex flex-col sm:flex-row gap-8">
         {/* Staking Form */}
-        <div className="lg:col-span-2">
-          <div className="bg-black border border-[#34FCB4]  p-6">
+        <div className="lg:col-span-2 w-full sm:w-1/2">
+          <div className="relative">
+            {/* Background box/shadow effect */}
+            <div className='absolute inset-0 bg-black border border-[#34FCB4] transform translate-x-3 translate-y-1'></div>
+            
+            {/* Main box */}
+            <div className="bg-black border border-[#34FCB4] px-4 py-8 relative">
             {/* Staking Period Selection */}
             <div className="mb-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -68,9 +71,9 @@ const Staking = () => {
                   <button
                     key={period.months}
                     onClick={() => setSelectedPeriod(period.months)}
-                    className={`p-4 rounded-lg border transition-all duration-200 ${
+                    className={`p-4 rounded border transition-all duration-200 ${
                       selectedPeriod === period.months
-                        ? 'border-cyan-400 bg-cyan-400/10 text-white'
+                        ? 'border-[#34FCB4] bg-[#34FCB4]/10 text-white'
                         : 'border-gray-600 text-gray-400 hover:border-gray-500'
                     }`}
                   >
@@ -84,7 +87,7 @@ const Staking = () => {
             </div>
 
             {/* Amount Input */}
-            <div className="mb-6">
+            <div className="mb-6 px-8">
               <label className="block text-sm font-medium text-gray-300 mb-3">
                 Enter Stake Amount
               </label>
@@ -94,46 +97,55 @@ const Staking = () => {
                   value={stakeAmount}
                   onChange={(e) => setStakeAmount(e.target.value)}
                   placeholder="0"
-                  className="w-full bg-gray-900 border border-gray-600 rounded-lg px-4 py-4 text-xl font-semibold text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors"
+                  className="w-full bg-white border border-gray-600 rounded-lg px-4 py-4 text-xl font-semibold text-black placeholder-black focus:outline-none focus:border-cyan-400 transition-colors"
                 />
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                  <img src="/images/logo.png" alt="Lunex" className="w-6 h-6" />
-                  <span className="text-gray-400">Lunex</span>
+                  <img src="/fav.png" alt="Lunex" className="" />
+                  <span className="text-black font-bold">Lunex</span>
                 </div>
               </div>
-              <div className="flex justify-between mt-2">
+              <div className="flex justify-start gap-2 mt-2">
                 <span className="text-sm text-gray-400">Available Amount</span>
-                <span className="text-sm text-white">🪙 8,000,000,000</span>
+                <span className="text-sm text-white flex items-center gap-2"> <img src="/wtfav.png" alt="" className='w-4 h-4' /> 8,000,000,000</span>
               </div>
             </div>
 
             {/* Stake Button */}
-            <button className="w-full bg-gradient-to-r from-cyan-400 to-green-400 text-black font-bold py-4 rounded-lg hover:from-cyan-500 hover:to-green-500 transition-all duration-200">
+           <div className='flex justify-center px-8'>
+           <button className=" bg-[#34FCB4] text-black font-bold py-4 rounded-lg hover:from-cyan-500 hover:to-green-500 transition-all duration-200 w-full">
               Stake
             </button>
+           </div>
+          </div>
           </div>
         </div>
 
         {/* Staking History/Rewards */}
-        <div className="space-y-6">
+        <div className="space-y-2 w-full sm:w-1/2">
           {/* Withdrawal History */}
-          <div className="bg-black border border-[#34FCB4] px-2 py-4 ">
-            <div className="grid grid-cols-4 gap-4 mb-4">
+          <div className="relative">
+            {/* Background box/shadow effect */}
+   
+            
+            {/* Main box */}
+            <div className="bg-black border border-[#34FCB4]  relative">
+            <div className="grid grid-cols-4 gap-4 mb-4 border-b border-[#535353] px-2 py-3">
               <div className="text-center">
-                <p className="text-xs text-gray-400 mb-1">AMOUNT</p>
+                <p className="text-xs text-white font-bold mb-1">AMOUNT</p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-gray-400 mb-1">WITHDRAWAL TIME</p>
+                <p className="text-xs text-white font-bold mb-1">WITHDRAWAL TIME</p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-gray-400 mb-1">REWARD</p>
+                <p className="text-xs text-white font-bold mb-1">REWARD</p>
               </div>
               <div className="text-center">
-                <p className="text-xs text-gray-400 mb-1">WITHDRAWAL</p>
+                <p className="text-xs text-white font-bold mb-1">WITHDRAWAL</p>
               </div>
             </div>
-            <div className="text-center text-gray-500 py-8">
+            <div className="text-center text-white py-8">
               <p className="text-sm">You have no staking history yet!</p>
+            </div>
             </div>
           </div>
         </div>
