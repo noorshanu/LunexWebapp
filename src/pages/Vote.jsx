@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { HiArrowRight } from 'react-icons/hi2';
+import { useNavigate } from 'react-router-dom';
 
 const Vote = () => {
+  const navigate = useNavigate();
   const delegates = [
     {
       name: 'BLUE',
@@ -65,6 +67,7 @@ const Vote = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/vote/delegates')}
             className="relative bg-black border border-[#34FCB4] text-white font-bold px-6 py-3 hover:bg-gray-900 transition-all duration-200 flex items-center gap-2"
           >
             DELEGATE
@@ -185,6 +188,7 @@ const Vote = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/vote/delegates')}
               className="bg-gray-800 border border-gray-600 text-white font-semibold px-6 py-3 rounded-lg hover:border-[#34FCB4] transition-all duration-200 flex items-center gap-2 mx-auto"
             >
               VIEW ALL
