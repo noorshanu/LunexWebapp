@@ -1,3 +1,4 @@
+import { div } from 'framer-motion/client';
 import React, { useState } from 'react';
 
 const Staking = () => {
@@ -13,45 +14,53 @@ const Staking = () => {
 
   const stats = [
     { label: 'Total Staked Value', value: '$8,453.59', icon: '/images/stake.png' },
-    { label: 'Total Rewards Earned', value: '$1,536.00', icon: '/images/stake.png' },
-    { label: 'Current APY', value: '1.5%', icon: '/images/stake.png' },
-    { label: 'Available Balance', value: '8,000,000,000', icon: '/images/stake.png' },
+    { label: 'Total Rewards Earned', value: '$1,536.00', icon: '/images/reward.png' },
+    { label: 'Current APY', value: '1.5%', icon: '/images/leaf.png' },
+    { label: 'Available Balance', value: '8,000,000,000', icon: '/images/locker.png' },
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 relative">
+      <img src="images/border-top.png" alt="" className='absolute top-0 left-0  w-full' />
       {/* Hero Section */}
       <div className="text-left">
         <div className="relative inline-block">
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-2">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
             Staking
           </h1>
-          <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400 to-green-400"></div>
+         
         </div>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, index) => (
-          <div
-            key={index}
-            className="bg-black border border-green-400 rounded-lg p-6"
-          >
-            <div className="flex flex-col items-center text-center space-y-4">
-              <img src={stat.icon} alt={stat.label} className="w-12 h-12" />
-              <div>
-                <p className="text-white text-sm mb-1">{stat.label}</p>
-                <p className="text-white text-xl font-bold">{stat.value}</p>
+       <div className='relative pl-2'>
+         {/* Background box/shadow effect */}
+         <div className='absolute inset-0 bg-black border border-[#34FCB4] h-[128px] w-[96%] transform translate-x-4 translate-y-1'></div>
+         
+         {/* Main box */}
+         <div className='bg-black border border-[#34FCB4] w-full h-[130px] relative'>
+            <div className="p-4 w-full h-full flex items-center">
+              <div className="flex items-center gap-4 w-full">
+                <img src={stat.icon} alt={stat.label} className="w-14 h-16 sm:w-18 sm:h-22 " />
+                <div>
+                  <p className="text-gray-400 text-sm">{stat.label}</p>
+                  <p className="text-white text-xl font-bold">{stat.value}</p>
+                </div>
               </div>
             </div>
-          </div>
+        </div>
+       </div>
+        
+     
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Staking Form */}
         <div className="lg:col-span-2">
-          <div className="bg-black border border-cyan-400 rounded-3xl p-8">
+          <div className="bg-black border border-[#34FCB4]  p-6">
             {/* Staking Period Selection */}
             <div className="mb-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -108,7 +117,7 @@ const Staking = () => {
         {/* Staking History/Rewards */}
         <div className="space-y-6">
           {/* Withdrawal History */}
-          <div className="bg-black border border-cyan-400 rounded-3xl p-6">
+          <div className="bg-black border border-[#34FCB4] px-2 py-4 ">
             <div className="grid grid-cols-4 gap-4 mb-4">
               <div className="text-center">
                 <p className="text-xs text-gray-400 mb-1">AMOUNT</p>
