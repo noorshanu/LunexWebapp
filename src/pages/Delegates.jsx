@@ -64,27 +64,27 @@ const Delegates = () => {
       {/* Header Section */}
       <motion.div 
         className="relative"
-        initial={{ opacity: 0, y: -50 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.6 }}
       >
-        {/* Background box/shadow effect */}
-        <motion.div 
-          className='absolute inset-0 bg-black border border-[#34FCB4] transform translate-x-3 translate-y-1'
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        />
-        
-        {/* Main box */}
         <div className="bg-black border border-[#34FCB4] p-8 relative">
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <motion.div 
-              className="flex items-center justify-center"
+            <motion.div
               initial={{ rotate: -180, scale: 0 }}
               animate={{ rotate: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 200 }}
+              transition={{ 
+                duration: 1, 
+                delay: 0.3, 
+                type: "spring", 
+                stiffness: 200 
+              }}
+              whileHover={{ 
+                rotate: 360,
+                scale: 1.1,
+                transition: { duration: 0.5 }
+              }}
             >
               <img src="/images/biglogo.png" alt="Lunex" className="" />
             </motion.div>
@@ -98,17 +98,31 @@ const Delegates = () => {
             >
               <motion.h1 
                 className="text-3xl font-bold text-white mb-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.6,
+                  type: "spring",
+                  stiffness: 200
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  textShadow: "0 0 20px rgba(52, 252, 180, 0.5)",
+                  transition: { duration: 0.3 }
+                }}
               >
                 Lunex Network
               </motion.h1>
               <motion.p 
                 className="text-[#D1D5DB] text-xl leading-relaxed max-w-5xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
+                whileHover={{
+                  color: "#34FCB4",
+                  transition: { duration: 0.3 }
+                }}
               >
                 A Web3 multi-chain bridge empowering seamless, secure, and non-custodial cross-chain asset transfers with deep liquidity and low fees.
               </motion.p>
@@ -120,200 +134,116 @@ const Delegates = () => {
       {/* Status Filter */}
       <motion.div 
         className="space-y-4"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
         <div className="flex items-center gap-4">
-          <motion.label 
-            className="block text-white text-sm font-medium"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 1.2 }}
-          >
+          <label className="block text-white text-sm font-medium">
             Status
-          </motion.label>
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(52, 252, 180, 0.3)" }}
-            whileTap={{ scale: 0.95 }}
+          </label>
+          <button
             onClick={() => setActiveFilter('All')}
-            className={`px-6 py-1 text-sm font-semibold transition-all duration-200 ${
+            className={`px-6 py-1 text-sm font-semibold transition-all duration-200 hover:scale-105 ${
               activeFilter === 'All'
                 ? 'bg-[#34FCB4] text-black'
                 : 'border border-[#34FCB4] text-white hover:bg-[#34FCB4]/10'
             }`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 1.3 }}
           >
             All
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(52, 252, 180, 0.3)" }}
-            whileTap={{ scale: 0.95 }}
+          </button>
+          <button
             onClick={() => setActiveFilter('Active')}
-            className={`px-6 py-1 text-sm font-semibold transition-all duration-200 ${
+            className={`px-6 py-1 text-sm font-semibold transition-all duration-200 hover:scale-105 ${
               activeFilter === 'Active'
                 ? 'bg-[#34FCB4] text-black'
                 : 'border border-[#34FCB4] text-white hover:bg-[#34FCB4]/10'
             }`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 1.4 }}
           >
             Active {activeCount}
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(52, 252, 180, 0.3)" }}
-            whileTap={{ scale: 0.95 }}
+          </button>
+          <button
             onClick={() => setActiveFilter('Closed')}
-            className={`px-6 py-1 text-sm font-semibold transition-all duration-200 ${
+            className={`px-6 py-1 text-sm font-semibold transition-all duration-200 hover:scale-105 ${
               activeFilter === 'Closed'
                 ? 'bg-[#34FCB4] text-black'
                 : 'border border-[#34FCB4] text-white hover:bg-[#34FCB4]/10'
             }`}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 1.5 }}
           >
             Closed {closedCount}
-          </motion.button>
+          </button>
         </div>
       </motion.div>
 
       {/* Proposal Cards */}
       <motion.div 
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 1.6 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
       >
         {filteredProposals.map((proposal, index) => (
           <motion.div 
             key={proposal.id} 
             className="relative"
-            initial={{ opacity: 0, y: 50, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 0.6, 
-              delay: 1.8 + (index * 0.1),
-              type: "spring",
-              stiffness: 100
+              duration: 0.5, 
+              delay: 0.6 + (index * 0.1)
             }}
             whileHover={{ 
-              y: -10,
+              y: -3,
               transition: { duration: 0.2 }
             }}
           >
-            {/* Background box/shadow effect */}
-            <motion.div 
-              className='absolute inset-0 bg-black border border-[#34FCB4] transform translate-x-3 translate-y-1'
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 2.0 + (index * 0.1) }}
-            />
-            
             {/* Main card */}
-            <motion.div 
-              className="bg-black border border-[#34FCB4] p-6 relative cursor-pointer"
-              whileHover={{ 
-                boxShadow: "0 0 30px rgba(52, 252, 180, 0.2)",
-                borderColor: "#34FCB4"
-              }}
-              transition={{ duration: 0.3 }}
-            >
+            <div className="bg-black border border-[#34FCB4] p-6 relative cursor-pointer hover:shadow-lg hover:shadow-[#34FCB4]/20 transition-all duration-300">
               {/* Status Badge */}
-              <motion.div 
-                className="mb-4"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 2.2 + (index * 0.1) }}
-              >
-                <motion.span 
+              <div className="mb-4">
+                <span 
                   className={`px-3 py-1 text-xs font-semibold border ${
                     proposal.status === 'Active' 
                       ? 'border-[#34FCB4] text-[#34FCB4]' 
                       : 'border-white text-white'
                   }`}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
                 >
                   {proposal.status}
-                </motion.span>
-              </motion.div>
+                </span>
+              </div>
 
               {/* Title */}
-              <motion.h3 
-                className="text-white font-bold text-lg mb-2 leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 2.4 + (index * 0.1) }}
-              >
+              <h3 className="text-white font-bold text-lg mb-2 leading-tight">
                 {proposal.title}
-              </motion.h3>
+              </h3>
 
               {/* Description */}
-              <motion.p 
-                className="text-white text-sm mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 2.6 + (index * 0.1) }}
-              >
+              <p className="text-[#D1D5DB] text-sm mb-4">
                 {proposal.description}
-              </motion.p>
+              </p>
 
               {/* Separator */}
-              <motion.div 
-                className="border-t border-white mb-4"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.5, delay: 2.8 + (index * 0.1) }}
-              />
+              <div className="border-t border-white mb-4" />
 
               {/* Total Votes */}
-              <motion.div 
-                className="text-right"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 3.0 + (index * 0.1) }}
-              >
+              <div className="text-right">
                 <span className="text-white text-sm">Total Votes: </span>
-                <motion.span 
-                  className="text-[#34FCB4] font-bold"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ 
-                    duration: 0.3, 
-                    delay: 3.2 + (index * 0.1),
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                >
+                <span className="text-[#34FCB4] font-bold">
                   {proposal.totalVotes}
-                </motion.span>
-              </motion.div>
-            </motion.div>
+                </span>
+              </div>
+            </div>
           </motion.div>
         ))}
       </motion.div>
 
       {/* Empty State */}
       {filteredProposals.length === 0 && (
-        <motion.div 
-          className="text-center py-12"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
-        >
-          <motion.p 
-            className="text-gray-400 text-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
+        <div className="text-center py-12">
+          <p className="text-gray-400 text-lg">
             No proposals found for the selected filter.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       )}
     </motion.div>
   );
