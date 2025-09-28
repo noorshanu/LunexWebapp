@@ -1,9 +1,10 @@
-import { div } from 'framer-motion/client';
 import React, { useState } from 'react';
+import StakingModal from '../components/StakingModal';
 
 const Staking = () => {
   const [stakeAmount, setStakeAmount] = useState('');
   const [selectedPeriod, setSelectedPeriod] = useState('3');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const stakingPeriods = [
     { months: '3', apy: '1.5%' },
@@ -71,15 +72,15 @@ const Staking = () => {
                   <button
                     key={period.months}
                     onClick={() => setSelectedPeriod(period.months)}
-                    className={`p-4 rounded border transition-all duration-200 ${
+                    className={`p-4 rounded border transition-all duration-200 cursor-pointer ${
                       selectedPeriod === period.months
-                        ? 'border-[#34FCB4] bg-[#34FCB4]/10 text-white'
-                        : 'border-gray-600 text-gray-400 hover:border-gray-500'
+                        ? 'border-[#34FCB4] bg-gradient-to-r from-[#34FCB4] to-[#1F966B] text-black'
+                        : 'border-[#34FCB4] text-white hover:border-gray-500'
                     }`}
                   >
                     <div className="text-center">
                       <div className="text-lg font-bold">{period.months} month{period.months !== '1' ? 's' : ''}</div>
-                      <div className="text-xs text-gray-400">{period.apy}</div>
+                      <div className={`text-xs ${selectedPeriod === period.months ? 'text-black' : 'text-gray-400'}`}>{period.apy}</div>
                     </div>
                   </button>
                 ))}
@@ -111,11 +112,14 @@ const Staking = () => {
             </div>
 
             {/* Stake Button */}
-           <div className='flex justify-center px-8'>
-           <button className=" bg-[#34FCB4] text-black font-bold py-4 rounded-lg hover:from-cyan-500 hover:to-green-500 transition-all duration-200 w-full">
-              Stake
-            </button>
-           </div>
+            <div className='flex justify-center px-8'>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className=" bg-[#34FCB4] text-black font-bold py-4 rounded-lg hover:from-cyan-500 hover:to-green-500 transition-all duration-200 w-full cursor-pointer"
+            >
+                Stake
+              </button>
+            </div>
           </div>
           </div>
         </div>
@@ -150,6 +154,12 @@ const Staking = () => {
           </div>
         </div>
       </div>
+
+      {/* Staking Modal */}
+      <StakingModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 };
