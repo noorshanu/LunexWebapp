@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const Delegates = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const navigate = useNavigate();
 
   const proposals = [
     {
@@ -186,19 +188,20 @@ const Delegates = () => {
           <motion.div 
             key={proposal.id} 
             className="relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.5, 
-              delay: 0.6 + (index * 0.1)
-            }}
             whileHover={{ 
               y: -3,
               transition: { duration: 0.2 }
             }}
           >
             {/* Main card */}
-            <div className="bg-black border border-[#34FCB4] p-6 relative cursor-pointer hover:shadow-lg hover:shadow-[#34FCB4]/20 transition-all duration-300">
+            <div 
+              className="bg-black border border-[#34FCB4] p-6 relative cursor-pointer hover:shadow-lg hover:shadow-[#34FCB4]/20 transition-all duration-300"
+              onClick={() => {
+                if (proposal.status === 'Closed') {
+                  navigate(`/proposal/${proposal.id}`);
+                }
+              }}
+            >
               {/* Status Badge */}
               <div className="mb-4">
                 <span 

@@ -5,6 +5,7 @@ import Staking from './pages/Staking';
 import Swap from './pages/Swap';
 import Vote from './pages/Vote';
 import Delegates from './pages/Delegates';
+import ProposalDetails from './pages/ProposalDetails';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/swap" element={<Swap />} />
           <Route path="/vote" element={<Vote />} />
           <Route path="/vote/delegates" element={<Delegates />} />
+          <Route path="/proposal/:id" element={<ProposalDetails />} />
         </Routes>
       </Layout>
     </Router>
