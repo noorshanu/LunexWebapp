@@ -299,7 +299,7 @@ const Delegates = () => {
               className="bg-black border border-[#34FCB4] text-white font-semibold px-6 py-2 hover:bg-[#34FCB4]/10 transition-all duration-200 flex items-center gap-2"
               onClick={(e) => {
                 e.stopPropagation();
-                // Handle vote action
+                navigate(`/proposal/${activeProposal.id}/vote`);
               }}
             >
               VOTE NOW
@@ -513,12 +513,29 @@ const Delegates = () => {
               {/* Separator */}
               <div className="border-t border-white mb-4" />
 
-              {/* Total Votes */}
-              <div className="text-right">
-                <span className="text-white text-sm">Total Votes: </span>
-                <span className="text-[#34FCB4] font-bold">
-                  {proposal.totalVotes}
-                </span>
+              {/* Total Votes and Vote Button */}
+              <div className="flex justify-between items-center">
+                <div className="text-right">
+                  <span className="text-white text-sm">Total Votes: </span>
+                  <span className="text-[#34FCB4] font-bold">
+                    {proposal.totalVotes}
+                  </span>
+                </div>
+                
+                {proposal.status === 'Active' && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-black border border-[#34FCB4] text-white font-semibold px-4 py-2 hover:bg-[#34FCB4]/10 transition-all duration-200 flex items-center gap-2 text-sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/proposal/${proposal.id}/vote`);
+                    }}
+                  >
+                    VOTE NOW
+                    <HiArrowRight className="w-3 h-3" />
+                  </motion.button>
+                )}
               </div>
             </div>
           </motion.div>
