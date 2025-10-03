@@ -209,6 +209,7 @@ const Delegates = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => navigate('/create-proposal')}
           className="bg-black border border-[#34FCB4] text-white font-semibold px-6 py-3 hover:bg-[#34FCB4]/10 transition-all duration-200 flex items-center gap-2"
         >
           <HiPlus className="w-4 h-4 text-[#34FCB4]" />

@@ -7,6 +7,7 @@ import Vote from './pages/Vote';
 import Delegates from './pages/Delegates';
 import ProposalDetails from './pages/ProposalDetails';
 import VotingPage from './pages/VotingPage';
+import CreateProposal from './pages/CreateProposal';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/delegates" element={<Delegates />} />
           <Route path="/proposal/:id" element={<ProposalDetails />} />
           <Route path="/proposal/:id/vote" element={<VotingPage />} />
+          <Route path="/create-proposal" element={<CreateProposal />} />
         </Routes>
       </Layout>
     </Router>
