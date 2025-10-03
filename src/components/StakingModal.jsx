@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiInformationCircle } from 'react-icons/hi';
 import PopupModal from './PopupModal';
+import { IoAddCircleSharp } from "react-icons/io5";
 
 const StakingModal = ({ isOpen, onClose }) => {
   const [amount, setAmount] = useState('');
@@ -60,24 +61,24 @@ const StakingModal = ({ isOpen, onClose }) => {
                 <div>
                  
                   <div className="flex items-center justify-between ">
-                  <label className="block text-gray-400 text-sm mb-2">Funding Account</label>
-               <div className='flex items-center gap-2'>     <span className="text-white">0 Lunex</span>
-                    <button className="bg-[#34FCB4] text-black w-6 h-6 rounded-full flex items-center justify-center hover:bg-[#34FCB4]/80 transition-colors">
-                      <span className="text-sm font-bold">+</span>
-                    </button>
+                  <label className="block text-gray-400 text-xs mb-2">Funding Account</label>
+               <div className='flex items-center text-xs gap-2'>     <span className="text-white text-xs">0 Lunex</span>
+            
+                    <IoAddCircleSharp className='w-4 h-4 text-[#34FCB4]' />
+         
                   </div> </div>
                 </div>
 
                 {/* Max Amount */}
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Max Amount</span>
-                  <span className="text-white">10.207.99474212 Lunex</span>
+                  <span className="text-gray-400 text-xs">Max Amount</span>
+                  <span className="text-white  text-xs">10.207.99474212 Lunex</span>
                 </div>
               </div>
 
               {/* Summary Section */}
               <div className="mb-6 border-t-2 border-[#2D2C2D]  pt-4">
-                <h3 className="text-white font-semibold mb-4 text-center">Summary</h3>
+                <h3 className="text-white font-semibold mb-4 text-center text-xl">Summary</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">First Distribution Date</span>
