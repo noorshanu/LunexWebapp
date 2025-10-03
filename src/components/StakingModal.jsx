@@ -58,13 +58,14 @@ const StakingModal = ({ isOpen, onClose }) => {
 
                 {/* Funding Account */}
                 <div>
+                 
+                  <div className="flex items-center justify-between ">
                   <label className="block text-gray-400 text-sm mb-2">Funding Account</label>
-                  <div className="flex items-center justify-between bg-gray-800 border border-gray-600 rounded-lg px-4 py-3">
-                    <span className="text-white">0 Lunex</span>
+               <div className='flex items-center gap-2'>     <span className="text-white">0 Lunex</span>
                     <button className="bg-[#34FCB4] text-black w-6 h-6 rounded-full flex items-center justify-center hover:bg-[#34FCB4]/80 transition-colors">
                       <span className="text-sm font-bold">+</span>
                     </button>
-                  </div>
+                  </div> </div>
                 </div>
 
                 {/* Max Amount */}
@@ -75,8 +76,8 @@ const StakingModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Summary Section */}
-              <div className="mb-6">
-                <h3 className="text-white font-semibold mb-4">Summary</h3>
+              <div className="mb-6 border-t-2 border-[#2D2C2D]  pt-4">
+                <h3 className="text-white font-semibold mb-4 text-center">Summary</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400">First Distribution Date</span>

@@ -43,7 +43,7 @@ const PopupModal = ({
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={onClose}
-                      className="text-white hover:text-gray-300 transition-colors"
+                      className="text-white hover:text-gray-300 transition-colors cursor-pointer"
                     >
                       <HiX className="w-6 h-6" />
                     </motion.button>
