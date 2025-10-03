@@ -45,11 +45,11 @@ const StakingModal = ({ isOpen, onClose }) => {
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="Min amount: 0.001 Lunex"
-                      className="w-full  border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#34FCB4] transition-colors"
+                      className="w-full  border border-[#34FCB4] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#34FCB4] transition-colors"
                     />
-                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
-                      <span className="text-gray-400"> <img src="/fav.png" alt="Lunex" className="w-4 h-4" /> Lunex</span>
-                      <button className="bg-[#34FCB4] text-black px-3 py-1 rounded text-sm font-semibold hover:bg-[#34FCB4]/80 transition-colors">
+                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center ">
+                      <span className="text-gray-200 flex items-center gap-2"> <img src="/fav.png" alt="Lunex" className="w-4 h-4" /> Lunex</span>
+                      <button className=" text-[#34FCB4] px-3 py-1 rounded text-sm font-semibold hover:bg-[#34FCB4]/80 transition-colors">
                         Max
                       </button>
                     </div>
