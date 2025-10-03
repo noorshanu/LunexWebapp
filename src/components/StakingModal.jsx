@@ -13,14 +13,14 @@ const StakingModal = ({ isOpen, onClose }) => {
       onClose={onClose}
       title={
         <div className="flex items-center gap-3">
-          <img src="/fav.png" alt="Lunex" className="w-8 h-8" />
+          <img src="/wtfav.png" alt="Lunex" className="w-8 h-8" />
           <span>Lunex Staking</span>
         </div>
       }
     >
 
               {/* Staking Details */}
-              <div className="space-y-4 mb-6">
+              <div className="space-y-4 mb-6 ">
                 {/* Reference APR */}
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Reference APR</span>
@@ -45,10 +45,10 @@ const StakingModal = ({ isOpen, onClose }) => {
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       placeholder="Min amount: 0.001 Lunex"
-                      className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#34FCB4] transition-colors"
+                      className="w-full  border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#34FCB4] transition-colors"
                     />
                     <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
-                      <span className="text-gray-400">Lunex</span>
+                      <span className="text-gray-400"> <img src="/fav.png" alt="Lunex" className="w-4 h-4" /> Lunex</span>
                       <button className="bg-[#34FCB4] text-black px-3 py-1 rounded text-sm font-semibold hover:bg-[#34FCB4]/80 transition-colors">
                         Max
                       </button>

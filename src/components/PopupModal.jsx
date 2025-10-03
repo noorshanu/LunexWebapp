@@ -7,7 +7,7 @@ const PopupModal = ({
   onClose, 
   title, 
   children, 
-  maxWidth = 'max-w-md',
+  maxWidth = 'max-w-xl',
   showCloseButton = true,
   closeOnBackdropClick = true 
 }) => {
@@ -30,11 +30,12 @@ const PopupModal = ({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
-              className={`bg-gray-900 border border-[#34FCB4] rounded-xl p-6 w-full ${maxWidth} relative`}
+              className={`bg-[#000000] border border-[#34FCB4]   px-10  w-full ${maxWidth} relative`}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header */}
-              {title && (
+        <div className='border-r-2 border-l-2 border-[#2D2C2D] px-6 py-6'>
+                {/* Header */}
+                {title && (
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-white">{title}</h2>
                   {showCloseButton && (
@@ -52,6 +53,7 @@ const PopupModal = ({
 
               {/* Content */}
               {children}
+        </div>
             </motion.div>
           </motion.div>
         </>
