@@ -33,6 +33,7 @@ const PopupModal = ({
               className={`bg-[#000000] border border-[#34FCB4]   px-10  w-full ${maxWidth} relative`}
               onClick={(e) => e.stopPropagation()}
             >
+              <img src="/images/blurpop.png" alt="" className='absolute top-0 left-0 bottom-0 right-0 w-full h-full z-0' />
         <div className='border-r-2 border-l-2 border-[#2D2C2D] px-6 py-6'>
                 {/* Header */}
                 {title && (
