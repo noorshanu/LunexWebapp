@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import StakingModal from '../components/StakingModal';
 import { useAppKitAccount } from '@reown/appkit/react';
@@ -64,15 +65,15 @@ const Staking = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        {stats.map((stat, index) => (
+        {stats.map((stat, idx) => (
           <motion.div 
-            key={index}
+            key={stat.label}
             className='relative pl-2'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
               duration: 0.5, 
-              delay: 0.6 + (index * 0.1)
+              delay: 0.6 + (idx * 0.1)
             }}
             whileHover={{ 
               y: -3,
@@ -123,7 +124,7 @@ const Staking = () => {
               {/* Staking Period Selection */}
               <div className="mb-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {stakingPeriods.map((period, index) => (
+                  {stakingPeriods.map((period) => (
                     <button
                       key={period.months}
                       onClick={() => setSelectedPeriod(period.months)}
