@@ -7,6 +7,10 @@ import { FiCircle } from 'react-icons/fi';
 // Removed WalletKit usage in favor of EthereumProvider
 import { useAppKitAccount, useAppKit } from '@reown/appkit/react';
 import { useDisconnect } from 'wagmi';
+import { useReadContract } from 'wagmi';
+import { formatUnits } from 'viem';
+import { erc20Abi } from '../lib/erc20Abi.ts';
+import { LUNEX_TOKEN_ADDRESS } from '../lib/constants.ts';
 
 const Navbar = () => {
   const location = useLocation();
@@ -15,6 +19,30 @@ const Navbar = () => {
   const appkit = useAppKit();
   const { disconnect } = useDisconnect();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const tokenAddress = LUNEX_TOKEN_ADDRESS;
+  const { data: rawBalance } = useReadContract({
+    address: tokenAddress,
+    abi: erc20Abi,
+    functionName: 'balanceOf',
+    args: address ? [address] : undefined,
+    query: { enabled: Boolean(isConnected && address) },
+  });
+  const { data: tokenDecimals } = useReadContract({
+    address: tokenAddress,
+    abi: erc20Abi,
+    functionName: 'decimals',
+    query: { enabled: Boolean(isConnected) },
+  });
+  const lunexDisplay = useMemo(() => {
+    if (!rawBalance || tokenDecimals == null) return null;
+    try {
+      const v = Number(formatUnits(rawBalance, tokenDecimals));
+      return v.toFixed(2);
+    } catch {
+      return null;
+    }
+  }, [rawBalance, tokenDecimals]);
 
   const navItems = [
     { name: 'Stake', path: '/', active: location.pathname === '/' },
@@ -110,6 +138,13 @@ const Navbar = () => {
                 <img src="images/button.png" alt="" className=' absolute left-[-10px]' />
                 <span className='py-2 px-4 border border-gray-700'>{connectedLabel}</span>
               </motion.button>
+
+              {/* LUNEX Balance */}
+              {isConnected && lunexDisplay !== null && (
+                <div className="text-xs md:text-sm text-[#34FCB4] border border-green-400 px-3 py-2">
+                  LUNEX: {lunexDisplay}
+                </div>
+              )}
 
               {/* Account Dropdown */}
               {isConnected && isMenuOpen && (

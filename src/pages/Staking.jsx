@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import StakingModal from '../components/StakingModal';
+import { useAppKitAccount } from '@reown/appkit/react';
+import { useErc20Balance } from '../lib/useErc20Balance.ts';
+import { LUNEX_TOKEN_ADDRESS } from '../lib/constants.ts';
 
 const Staking = () => {
   const [stakeAmount, setStakeAmount] = useState('');
   const [selectedPeriod, setSelectedPeriod] = useState('3');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { address, isConnected } = useAppKitAccount();
+  const { balanceFormatted } = useErc20Balance(isConnected ? address : undefined, LUNEX_TOKEN_ADDRESS);
+  const availableLabel = useMemo(() => balanceFormatted ?? '0.00', [balanceFormatted]);
 
   const stakingPeriods = [
     { months: '3', apy: '1.5%' },
@@ -18,7 +24,7 @@ const Staking = () => {
     { label: 'Total Staked Value', value: '$8,453.59', icon: '/images/stake.png' },
     { label: 'Total Rewards Earned', value: '$1,536.00', icon: '/images/reward.png' },
     { label: 'Current APY', value: '1.5%', icon: '/images/leaf.png' },
-    { label: 'Available Balance', value: '8,000,000,000', icon: '/images/locker.png' },
+    { label: 'Available Balance', value: `${availableLabel} LUNEX`, icon: '/images/locker.png' },
   ];
 
   return (
@@ -166,7 +172,7 @@ const Staking = () => {
                       alt="" 
                       className='w-4 h-4'
                     /> 
-                    8,000,000,000
+                    {availableLabel}
                   </span>
                 </div>
               </div>
@@ -226,6 +232,7 @@ const Staking = () => {
       <StakingModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
+        availableLabel={availableLabel}
       />
     </motion.div>
   );

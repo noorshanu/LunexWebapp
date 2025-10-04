@@ -4,7 +4,7 @@ import { HiInformationCircle } from 'react-icons/hi';
 import PopupModal from './PopupModal';
 import { IoAddCircleSharp } from "react-icons/io5";
 
-const StakingModal = ({ isOpen, onClose }) => {
+const StakingModal = ({ isOpen, onClose, availableLabel = '0.00' }) => {
   const [amount, setAmount] = useState('');
   const [agreed, setAgreed] = useState(false);
 
@@ -50,7 +50,7 @@ const StakingModal = ({ isOpen, onClose }) => {
                     />
                     <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center ">
                       <span className="text-gray-200 flex items-center gap-2"> <img src="/fav.png" alt="Lunex" className="w-4 h-4" /> Lunex</span>
-                      <button className=" text-[#34FCB4] px-3 py-1 rounded text-sm font-semibold hover:bg-[#34FCB4]/80 transition-colors">
+                      <button onClick={() => setAmount(availableLabel)} className=" text-[#34FCB4] px-3 py-1 rounded text-sm font-semibold hover:bg-[#34FCB4]/80 transition-colors">
                         Max
                       </button>
                     </div>
@@ -62,7 +62,7 @@ const StakingModal = ({ isOpen, onClose }) => {
                  
                   <div className="flex items-center justify-between ">
                   <label className="block text-gray-400 text-xs mb-2">Funding Account</label>
-               <div className='flex items-center text-xs gap-2'>     <span className="text-white text-xs">0 Lunex</span>
+               <div className='flex items-center text-xs gap-2'>     <span className="text-white text-xs">{availableLabel} Lunex</span>
             
                     <IoAddCircleSharp className='w-4 h-4 text-[#34FCB4]' />
          
