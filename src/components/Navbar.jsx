@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import { FiCircle } from 'react-icons/fi';
+// Removed WalletKit usage in favor of EthereumProvider
+import { useAppKitAccount, useAppKit } from '@reown/appkit/react';
+import { useDisconnect } from 'wagmi';
 
 const Navbar = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isConnected, address } = useAppKitAccount();
+  const appkit = useAppKit();
+  const { disconnect } = useDisconnect();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { name: 'Stake', path: '/', active: location.pathname === '/' },
@@ -17,6 +25,13 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const connectedLabel = useMemo(() => {
+    if (isConnected && address) {
+      return `${address.slice(0, 6)}...${address.slice(-4)}`;
+    }
+    return 'Connect Wallet';
+  }, [isConnected, address]);
 
   return (
     <>
@@ -79,16 +94,38 @@ const Navbar = () => {
                 />
               </motion.div>
 
-              {/* Connect Wallet Button */}
+              {/* Connect / Account Button */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  if (isConnected) {
+                    setIsMenuOpen((v) => !v);
+                  } else {
+                    appkit.open();
+                  }
+                }}
                 className="text-white  px-2 py-2  font-semibold hover:from-cyan-600 hover:to-green-600 transition-all duration-200 text-sm flex items-center space-x-2 border border-green-400 relative"
               >
                 <img src="images/button.png" alt="" className=' absolute left-[-10px]' />
-       
-                <span className='py-2 px-4 border border-gray-700'>Connect Wallet</span>
+                <span className='py-2 px-4 border border-gray-700'>{connectedLabel}</span>
               </motion.button>
+
+              {/* Account Dropdown */}
+              {isConnected && isMenuOpen && (
+                <div className="absolute right-4 top-16 bg-black border border-gray-800 z-50 w-56">
+                  <div className="px-4 py-3 border-b border-gray-800">
+                    <div className="text-xs text-gray-400">Connected</div>
+                    <div className="text-sm text-white break-all">{address}</div>
+                  </div>
+                  <button
+                    onClick={() => { setIsMenuOpen(false); disconnect(); }}
+                    className="w-full text-left px-4 py-3 text-red-400 hover:bg-gray-900"
+                  >
+                    Disconnect
+                  </button>
+                </div>
+              )}
 
               {/* Mobile Menu Button */}
               <motion.button
@@ -203,7 +240,7 @@ const Navbar = () => {
                     <div className="w-4 h-4 rounded-full border border-black flex items-center justify-center">
                       <div className="w-2 h-2 bg-black rounded-full"></div>
                     </div>
-                    <span>Connect Wallet</span>
+                    <span>{connectedLabel}</span>
                   </motion.button>
                 </div>
               </div>
