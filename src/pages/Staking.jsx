@@ -150,7 +150,7 @@ const Staking = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type="text"
+                    type="number"
                     value={stakeAmount}
                     onChange={(e) => setStakeAmount(e.target.value)}
                     placeholder="0"
